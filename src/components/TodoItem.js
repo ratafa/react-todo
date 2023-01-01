@@ -1,6 +1,7 @@
 import React from "react";
 import styled, {css} from "styled-components";
 import { MdDone, MdDelete } from 'react-icons/md';
+import {useTodoDispatch} from "../TodoContext";
 
 const RemoveItem = styled.div`
   display: flex;
@@ -61,15 +62,20 @@ const TodoText = styled.div`
 `;
 
 const TodoItem = ({id, done, text}) => {
+    const dispatch = useTodoDispatch();
+    const onToggle = () => dispatch({ type: 'TOGGLE', id });
+    const onRemove = () => dispatch({ type: 'REMOVE', id });
     return (
         <TodoItemBlock>
-            <CheckCircle done={done}>{done && <MdDone/>}</CheckCircle>
-            <TodoText text={text} done={done}>프로젝트 생성하기</TodoText>
-            <RemoveItem id={id}>
-                <MdDelete/>
+            <CheckCircle done={done} onClick={onToggle}>
+                {done && <MdDone />}
+            </CheckCircle>
+            <TodoText done={done}>{text}</TodoText>
+            <RemoveItem onClick={onRemove}>
+                <MdDelete />
             </RemoveItem>
         </TodoItemBlock>
     );
 }
 
-export default TodoItem;
+export default React.memo(TodoItem);

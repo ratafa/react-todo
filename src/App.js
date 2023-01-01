@@ -19,7 +19,7 @@ function App() {
               <TodoHead/>
               <TodoList/>
               <TodoCreate/>
-          </TodoTemplate>\
+          </TodoTemplate>
       </TodoProvider>
   );
 }

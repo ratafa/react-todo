@@ -48,13 +48,14 @@ export const TodoProvider = ({children}) => {
     const nextId = useRef(5);
     return (
         <TodoStateContext.Provider value={state}>
-            <TodoDispatchContext.Provider valu={dispatch}>
+            <TodoDispatchContext.Provider value={dispatch}>
                 <TodoNextIdContext.Provider value={nextId}>
                 {children}
+                {/*<GlobalStyle>을 포함한 아래 컴포넌트틀이 전부 children이다*/}
                 </TodoNextIdContext.Provider>
             </TodoDispatchContext.Provider>
         </TodoStateContext.Provider>
-    )
+    );
 }
 
 export const useTodoState = () => {
